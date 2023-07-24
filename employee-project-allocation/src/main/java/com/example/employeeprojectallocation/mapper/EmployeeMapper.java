@@ -8,8 +8,10 @@ public class EmployeeMapper {
     public static Employee employeeMapper(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         employee.setEmpId(employeeDTO.getEmpId());
-        employee.setDepartment(DepartmentMapper.departmentMapper(employeeDTO.getDepartmentDTO()));
-        employee.setProjectAllocations(employeeDTO.getProjectAllocation());
+         employee.setDepartment(DepartmentMapper.departmentMapper(employeeDTO.getDepartmentDTO()));
+
+       // employee.setDepartment(DepartmentMapper.departmentMapper(employeeDTO.));
+        // employee.setProjectAllocations(employeeDTO.getProjectAllocation());
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
         return employee;
@@ -19,7 +21,7 @@ public class EmployeeMapper {
         EmployeeDTO employeeDTO = new EmployeeDTO();
         employeeDTO.setEmpId(employee.getEmpId());
         employeeDTO.setDepartmentDTO(DepartmentMapper.departmentDTOMapper(employee.getDepartment()));
-        employeeDTO.setProjectAllocation(employee.getProjectAllocations());
+        //employeeDTO.setProjectAllocation(employee.getProjectAllocations());
         employeeDTO.setFirstName(employee.getFirstName());
         employeeDTO.setLastName(employee.getLastName());
         return employeeDTO;

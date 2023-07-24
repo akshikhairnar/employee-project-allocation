@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name="Departments")
 public class Department {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long departmentId;
 
     @Column(unique = true)
@@ -21,6 +21,6 @@ public class Department {
 
     // One to Many relationships with Employee
     @JsonIgnore
-    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "department")
     private List<Employee> employeeList= new ArrayList<>();
 }

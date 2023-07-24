@@ -1,8 +1,6 @@
 package com.example.employeeprojectallocation.service.ServiceImpl;
 
-import com.example.employeeprojectallocation.dto.EmployeeDTO;
 import com.example.employeeprojectallocation.entity.Employee;
-import com.example.employeeprojectallocation.mapper.EmployeeMapper;
 import com.example.employeeprojectallocation.repository.EmployeeRepository;
 import com.example.employeeprojectallocation.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,25 +21,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployee(Long id) {
-        Employee employee= employeeRepository.findById(id).orElseThrow();
+        Employee employee = employeeRepository.findById(id).orElseThrow();
         return employee;
 
     }
 
     @Override
     public Employee addEmployee(Employee employee) {
-        Employee employeeAdded= employeeRepository.save(employee);
-       return employeeAdded;
+        Employee employeeAdded = employeeRepository.save(employee);
+        return employeeAdded;
     }
 
     @Override
     public Employee updateEmployee(Employee employee, Long id) {
         if (id == employee.getEmpId()) {
 
-           Employee updatedEmployee= employeeRepository.save(employee);
-            return  updatedEmployee;
+            Employee updatedEmployee = employeeRepository.save(employee);
+            return updatedEmployee;
         }
-        return  null;
+        return null;
     }
 
     @Override

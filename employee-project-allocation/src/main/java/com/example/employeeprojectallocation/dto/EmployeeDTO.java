@@ -19,7 +19,7 @@ public class EmployeeDTO {
 
     private DepartmentDTO departmentDTO;
 
-    private Set<ProjectAllocation> projectAllocation;
+   // private Set<ProjectAllocation> projectAllocation;
 
    // private Set<Project> projects = new HashSet<>();
 }

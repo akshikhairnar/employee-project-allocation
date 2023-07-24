@@ -21,7 +21,7 @@ public class Project {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = {CascadeType.ALL})
     private Set<ProjectAllocation> projectAllocations;
 
     //@ManyToMany(mappedBy = "projects")
