@@ -20,7 +20,7 @@ public class ProjectController {
 
     @PostMapping
     public ResponseEntity<ProjectDTO> addProject(@RequestBody ProjectDTO projectDTO) {
-        Project projectToAdd=ProjectMapper.mapToProject(projectDTO);
+        Project projectToAdd = ProjectMapper.mapToProject(projectDTO);
         Project project = projectService.addProject(projectToAdd);
         ProjectDTO projectDTOAdded = ProjectMapper.mapToProjectDTO(project);
         return new ResponseEntity<>(projectDTOAdded, HttpStatus.OK);
@@ -42,7 +42,7 @@ public class ProjectController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ProjectDTO> updateProject(@RequestBody ProjectDTO projectDTO, @PathVariable("id") Long id) {
-        Project projectToUpdate=ProjectMapper.mapToProject(projectDTO);
+        Project projectToUpdate = ProjectMapper.mapToProject(projectDTO);
         Project updatedProject = projectService.updateProject(projectToUpdate, id);
         ProjectDTO updatedProjectDTO = ProjectMapper.mapToProjectDTO(updatedProject);
         return new ResponseEntity<>(updatedProjectDTO, HttpStatus.OK);

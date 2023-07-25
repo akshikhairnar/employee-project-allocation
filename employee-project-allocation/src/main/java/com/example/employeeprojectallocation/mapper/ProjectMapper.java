@@ -5,6 +5,9 @@ import com.example.employeeprojectallocation.entity.Project;
 
 public class ProjectMapper {
 
+    private ProjectMapper() {
+    }
+
     public static Project mapToProject(ProjectDTO projectdto) {
         Project project = new Project();
         project.setId(projectdto.getId());

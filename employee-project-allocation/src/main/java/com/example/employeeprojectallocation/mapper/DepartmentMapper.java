@@ -5,6 +5,7 @@ import com.example.employeeprojectallocation.entity.Department;
 
 public class DepartmentMapper {
 
+    private DepartmentMapper(){}
     public static Department departmentMapper(DepartmentDTO departmentDTO) {
         Department department = new Department();
         department.setDepartmentId(departmentDTO.getDepartmentId());

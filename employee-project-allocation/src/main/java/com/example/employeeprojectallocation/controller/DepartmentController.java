@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/departments")
@@ -22,7 +21,7 @@ public class DepartmentController {
     @GetMapping
     public ResponseEntity<List<DepartmentDTO>> getAllDepartments() {
         List<Department> departments = departmentService.getAllDepartment();
-        List<DepartmentDTO> departmentDTOS = departments.stream().map(department -> DepartmentMapper.departmentDTOMapper(department)).collect(Collectors.toList());
+        List<DepartmentDTO> departmentDTOS = departments.stream().map(DepartmentMapper::departmentDTOMapper).toList();
         return new ResponseEntity<>(departmentDTOS, HttpStatus.OK);
     }
 
@@ -30,23 +29,23 @@ public class DepartmentController {
     public ResponseEntity<DepartmentDTO> getDepartment(@PathVariable("id") Long id) {
         Department department = departmentService.getDepartment(id);
         DepartmentDTO departmentDTO = DepartmentMapper.departmentDTOMapper(department);
-        return new ResponseEntity<DepartmentDTO>(departmentDTO, HttpStatus.OK);
+        return new ResponseEntity<>(departmentDTO, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<DepartmentDTO> addDepartment(@RequestBody DepartmentDTO departmentDTO) {
-        Department departmentToAdd=DepartmentMapper.departmentMapper(departmentDTO);
+        Department departmentToAdd = DepartmentMapper.departmentMapper(departmentDTO);
         Department addedDepartment = departmentService.addDepartment(departmentToAdd);
         DepartmentDTO addedDepartmentDTO = DepartmentMapper.departmentDTOMapper(addedDepartment);
-        return new ResponseEntity<DepartmentDTO>(addedDepartmentDTO, HttpStatus.OK);
+        return new ResponseEntity<>(addedDepartmentDTO, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<DepartmentDTO> updateDepartment(@RequestBody DepartmentDTO departmentDTO, @PathVariable("id") Long id) {
-        Department departmentToUpdate=DepartmentMapper.departmentMapper(departmentDTO);
+        Department departmentToUpdate = DepartmentMapper.departmentMapper(departmentDTO);
         Department updatedDepartment = departmentService.updateDepartment(departmentToUpdate, id);
         DepartmentDTO updatedDepartmentDTO = DepartmentMapper.departmentDTOMapper(updatedDepartment);
-        return new ResponseEntity<DepartmentDTO>(updatedDepartmentDTO, HttpStatus.OK);
+        return new ResponseEntity<>(updatedDepartmentDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

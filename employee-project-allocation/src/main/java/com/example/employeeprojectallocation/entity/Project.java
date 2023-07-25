@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,9 +22,9 @@ public class Project {
     @OneToMany(mappedBy = "project", cascade = {CascadeType.ALL})
     private Set<ProjectAllocation> projectAllocations;
 
-    //@ManyToMany(mappedBy = "projects")
-    //@JsonIgnore
-    //private Set<Employee> employees=new HashSet<>();
+    @ManyToMany(mappedBy = "projects")
+    @JsonIgnore
+    private Set<Employee> employees = new HashSet<>();
 
 
 }

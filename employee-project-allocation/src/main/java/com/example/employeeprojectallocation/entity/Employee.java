@@ -22,21 +22,22 @@ public class Employee {
 
     //@NotNull
     @JsonIgnore
+    //@ManyToOne(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id")
+   // @JoinColumn(name = "department_id")
     private Department department;
 
     @OneToMany(mappedBy = "employee", cascade = {CascadeType.ALL})
     private Set<ProjectAllocation> projectAllocations;
 
-   // @JsonIgnore
-   // @ManyToMany(cascade = { CascadeType.ALL})
-//    @JoinTable(
-//            name="employee_project",
-//            joinColumns =  { @JoinColumn(name = "employee_id")},
-//            inverseJoinColumns = { @JoinColumn (name = "project_id") }
-//    )
-//    private Set<Project> projects=new HashSet<>();
+    @JsonIgnore
+    @ManyToMany(cascade = { CascadeType.ALL})
+    @JoinTable(
+            name="employee_project",
+            joinColumns =  { @JoinColumn(name = "employee_id")},
+            inverseJoinColumns = { @JoinColumn (name = "project_id") }
+    )
+    private Set<Project> projects=new HashSet<>();
 
 
 

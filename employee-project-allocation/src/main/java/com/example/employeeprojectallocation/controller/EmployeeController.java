@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/employees")
@@ -22,32 +21,32 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<List<EmployeeDTO>> getAllEmployee() {
         List<Employee> employees = employeeService.getAllEmployee();
-        List<EmployeeDTO> employeeDTOList = employees.stream().map(employee -> EmployeeMapper.employeeDTOMapper(employee)).collect(Collectors.toList());
-        return new ResponseEntity<>(employeeDTOList,HttpStatus.OK);
+        List<EmployeeDTO> employeeDTOList = employees.stream().map(EmployeeMapper::employeeDTOMapper).toList();
+        return new ResponseEntity<>(employeeDTOList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDTO> getEmployee(@PathVariable("id") Long id) {
         Employee employee = employeeService.getEmployee(id);
         EmployeeDTO employeeDTO = EmployeeMapper.employeeDTOMapper(employee);
-        return  new ResponseEntity<>(employeeDTO,HttpStatus.OK);
+        return new ResponseEntity<>(employeeDTO, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<EmployeeDTO> addEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        Employee employeeToAdd=EmployeeMapper.employeeMapper(employeeDTO);
-        Employee employee =employeeService.addEmployee(employeeToAdd);
-        EmployeeDTO employeeDTOAdded=EmployeeMapper.employeeDTOMapper(employee);
-        return new ResponseEntity<>(employeeDTOAdded,HttpStatus.OK);
+        Employee employeeToAdd = EmployeeMapper.employeeMapper(employeeDTO);
+        Employee employee = employeeService.addEmployee(employeeToAdd);
+        EmployeeDTO employeeDTOAdded = EmployeeMapper.employeeDTOMapper(employee);
+        return new ResponseEntity<>(employeeDTOAdded, HttpStatus.OK);
     }
 
     //updating employee by id
     @PutMapping("/{id}")
     public ResponseEntity<EmployeeDTO> updateEmployee(@RequestBody EmployeeDTO employeeDTO, @PathVariable("id") Long id) {
-       Employee employeeToUpdate=EmployeeMapper.employeeMapper(employeeDTO);
-        Employee employee=employeeService.updateEmployee(employeeToUpdate, id);
-        EmployeeDTO updatedEmployeeDTO=EmployeeMapper.employeeDTOMapper(employee);
-        return new ResponseEntity<>(updatedEmployeeDTO,HttpStatus.OK);
+        Employee employeeToUpdate = EmployeeMapper.employeeMapper(employeeDTO);
+        Employee employee = employeeService.updateEmployee(employeeToUpdate, id);
+        EmployeeDTO updatedEmployeeDTO = EmployeeMapper.employeeDTOMapper(employee);
+        return new ResponseEntity<>(updatedEmployeeDTO, HttpStatus.OK);
     }
 
     // deleting all employees
